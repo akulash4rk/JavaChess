@@ -6,13 +6,19 @@ public class Bishop extends ChessPiece {
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (line < 0 || line > 7 || column < 0 || column > 7 || toLine < 0 || toLine > 7 || toColumn < 0 || toColumn > 7)
+        if (line < 0 || line > 7 || column < 0 || column > 7 || toLine < 0 || toLine > 7 || toColumn < 0 || toColumn > 7) {
             return false;
+        }
 
         int diffX = Math.abs(toLine - line);
         int diffY = Math.abs(toColumn - column);
+        
+        if (diffX != diffY) {
+            return false; // Bishop can only move diagonally
+        }
 
-        return diffX == diffY;
+        // Check for pieces in the path from start to end
+        return chessBoard.isPathClear(line, column, toLine, toColumn);
     }
 
     @Override
