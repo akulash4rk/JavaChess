@@ -98,4 +98,22 @@ public class ChessBoard {
     public boolean checkPos(int pos) {
         return pos >= 0 && pos <= 7;
     }
+
+    public boolean isPathClear(int startLine, int startColumn, int endLine, int endColumn) {
+        int rowDirection = (endLine - startLine) > 0 ? 1 : (endLine - startLine) < 0 ? -1 : 0;
+        int colDirection = (endColumn - startColumn) > 0 ? 1 : (endColumn - startColumn) < 0 ? -1 : 0;
+    
+        int row = startLine + rowDirection;
+        int col = startColumn + colDirection;
+    
+        while (row != endLine || col != endColumn) {
+            if (board[row][col] != null) {
+                return false; 
+            }
+            row += rowDirection;
+            col += colDirection;
+        }
+    
+        return true; 
+    }
 }
