@@ -14,10 +14,10 @@ public class Bishop extends ChessPiece {
         int diffY = Math.abs(toColumn - column);
         
         if (diffX != diffY) {
-            return false; // Bishop can only move diagonally
+            return false;
         }
 
-        // Check for pieces in the path from start to end
+      
         return chessBoard.isPathClear(line, column, toLine, toColumn);
     }
 
